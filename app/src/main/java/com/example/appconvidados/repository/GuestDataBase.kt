@@ -12,11 +12,11 @@ class GuestDataBase(context: Context): SQLiteOpenHelper(context, NAME, null, VER
         private const val VERSION = 1
     }
 
-    override fun onCreate(db: SQLiteDatabase?) {
-
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL("CREATE TABLE Guest(id integer primary key autoincrement, name text, presence integer);")
     }
 
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
 
     }
 }
