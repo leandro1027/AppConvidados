@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_present"/>
+        app:layout_constraintTop_toBottomOf="@id/text_present">
 
         <RadioButton
             android:id="@+id/radio_present"
@@ -63,6 +63,7 @@
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/text_present"
             app:layout_constraintTop_toBottomOf="@+id/radio_present"/>
+    </RadioGroup>
 
 
     <Button

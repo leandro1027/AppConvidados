@@ -22,28 +22,15 @@ class GuestDataBase(context: Context): SQLiteOpenHelper(context, NAME, null, VER
        */
 
         db.execSQL(
-            "CREATE TABLE" + DataBaseConstants.GUEST.TABLE_NAME + " (" +
+            "CREATE TABLE " + DataBaseConstants.GUEST.TABLE_NAME + " (" +
                     DataBaseConstants.GUEST.COLUMNS.ID + " integer primary key autoincrement, " +
                     DataBaseConstants.GUEST.COLUMNS.NAME + " text, " +
-                    DataBaseConstants.GUEST.COLUMNS.PRESENCE + "integer);"
+                    DataBaseConstants.GUEST.COLUMNS.PRESENCE + " integer);"
         )
     }
 
         override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-            when (oldVersion){
-                1 -> {
 
-                }
-                2 -> {
-
-                }
-                3 -> {
-
-                }
-                else -> {
-
-                }
-            }
 
         }
     }

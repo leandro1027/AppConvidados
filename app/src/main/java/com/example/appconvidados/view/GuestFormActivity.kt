@@ -43,6 +43,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             val guest = GuestModel(0, name, presence)
             viewModel.insert(guest)
             Toast.makeText(this, "Cadastrado", Toast.LENGTH_SHORT).show()
+            finish()
 
         }
     }
