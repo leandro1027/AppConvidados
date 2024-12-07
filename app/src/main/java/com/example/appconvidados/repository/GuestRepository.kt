@@ -73,7 +73,7 @@ class GuestRepository private constructor(context: Context) {
             db.delete(DataBaseConstants.GUEST.TABLE_NAME, selection, args)
             true
         }catch (e: Exception){
-            false   
+            false
         }
     }
 }
