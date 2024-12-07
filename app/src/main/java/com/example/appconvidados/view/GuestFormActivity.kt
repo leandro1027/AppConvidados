@@ -2,6 +2,7 @@ package com.example.appconvidados.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,17 +29,20 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             insets
         }
 
-        viewModel = ViewModelProvider(this).get(GuestFormViewModel::class.java)
+        viewModel = ViewModelProvider(this)[GuestFormViewModel::class.java]
+
         binding.buttonEnviar.setOnClickListener(this)
+        binding.radioPresent.isChecked = true
     }
 
     override fun onClick(view: View) {
-        if (view.id == R.id.button_enviar){
+        if(view.id == R.id.button_enviar){
             val name = binding.editTextName.text.toString()
             val presence = binding.radioPresent.isChecked
 
             val guest = GuestModel(0, name, presence)
             viewModel.insert(guest)
+            Toast.makeText(this, "Cadastrado", Toast.LENGTH_SHORT).show()
 
         }
     }
