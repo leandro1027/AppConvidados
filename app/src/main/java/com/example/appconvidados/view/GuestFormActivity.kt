@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.appconvidados.viewmodel.GuestFormViewModel
 import com.example.appconvidados.R
+import com.example.appconvidados.constants.DataBaseConstants
 import com.example.appconvidados.databinding.ActivityGuestFormBinding
 import com.example.appconvidados.model.GuestModel
 
@@ -33,6 +34,8 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.buttonEnviar.setOnClickListener(this)
         binding.radioPresent.isChecked = true
+
+        loadData()
     }
 
     override fun onClick(view: View) {
@@ -45,6 +48,13 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this, "Cadastrado", Toast.LENGTH_SHORT).show()
             finish()
 
+        }
+    }
+
+    private fun loadData(){
+        val bundle = intent.extras
+        if (bundle != null){
+            val guestId = bundle.getInt(DataBaseConstants.GUEST.ID)
         }
     }
 }

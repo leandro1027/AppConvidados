@@ -1,17 +1,21 @@
 package com.example.appconvidados.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DEFAULT_ARGS_KEY
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appconvidados.constants.DataBaseConstants
 import com.example.appconvidados.databinding.FragmentAllGuestsBinding
 import com.example.appconvidados.view.adapter.GuestAdapter
+import com.example.appconvidados.view.listener.OnGuestListener
 import com.example.appconvidados.viewmodel.AllGuestViewModel
 
 
@@ -35,6 +39,25 @@ class AllGuestFragment : Fragment() {
 
         //adapter
         binding.recyclerAllGuests.adapter = adapter
+
+        val listener = object : OnGuestListener {
+
+            override fun onClick(id : Int) {
+                val intent = Intent(context, GuestFormActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt(DataBaseConstants.GUEST.ID, id)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            override fun onDelete(id : Int) {
+                viewModel.delete(id)
+                viewModel.getAll()
+            }
+
+        }
+
+        adapter.attachListenner(listener)
 
         viewModel.getAll()
 
