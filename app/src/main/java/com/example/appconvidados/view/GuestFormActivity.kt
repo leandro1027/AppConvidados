@@ -8,12 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import com.example.appconvidados.viewmodel.GuestFormViewModel
 import com.example.appconvidados.R
 import com.example.appconvidados.constants.DataBaseConstants
 import com.example.appconvidados.databinding.ActivityGuestFormBinding
 import com.example.appconvidados.model.GuestModel
-import java.util.Observer
+
 
 class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -54,7 +55,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
     }
     
     private fun observe(){
-        viewModel.guests.observe(this, androidx.lifecycle.Observer {
+        viewModel.guests.observe(this, Observer {
             binding.editTextName.setText(it.name)
             if (it.presence) {
                 binding.radioPresent.isChecked = true
@@ -63,7 +64,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
-        viewModel.saveGuest.observe(this, androidx.lifecycle.Observer {
+        viewModel.saveGuest.observe(this, Observer {
             if (it.sucess) {
                 Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
                 finish()
