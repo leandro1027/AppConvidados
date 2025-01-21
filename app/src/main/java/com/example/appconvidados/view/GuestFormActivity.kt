@@ -13,6 +13,7 @@ import com.example.appconvidados.R
 import com.example.appconvidados.constants.DataBaseConstants
 import com.example.appconvidados.databinding.ActivityGuestFormBinding
 import com.example.appconvidados.model.GuestModel
+import java.util.Observer
 
 class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -50,11 +51,17 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
         }
     }
+    
+    private fun observe(){
+        viewModel.guest.observe(this,Observer {
+
+    }
 
     private fun loadData(){
         val bundle = intent.extras
         if (bundle != null){
             val guestId = bundle.getInt(DataBaseConstants.GUEST.ID)
+            viewModel.get(guestId)
         }
     }
 }
