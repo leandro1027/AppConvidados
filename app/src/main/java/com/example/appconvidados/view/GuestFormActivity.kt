@@ -39,6 +39,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
         binding.buttonEnviar.setOnClickListener(this)
         binding.radioPresent.isChecked = true
 
+        observe()
         loadData()
     }
 
