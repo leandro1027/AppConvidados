@@ -62,6 +62,19 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
                 binding.radioAbsent.isChecked = true
             }
         })
+
+        viewModel.saveGuest.observe(this, androidx.lifecycle.Observer {
+            if (it) {
+                if (guestId ==0){
+                Toast.makeText(this, "Inserção com sucesso!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Atualização com sucesso!", Toast.LENGTH_SHORT).show()
+            }
+            finish()
+        }else {
+            Toast.makeText(this, "Falhou", Toast.LENGTH_SHORT).show()
+        }
+        })
 }
 
     private fun loadData(){
