@@ -64,16 +64,10 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
         })
 
         viewModel.saveGuest.observe(this, androidx.lifecycle.Observer {
-            if (it) {
-                if (guestId ==0){
-                Toast.makeText(this, "Inserção com sucesso!", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Atualização com sucesso!", Toast.LENGTH_SHORT).show()
+            if (it.sucess) {
+                Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
+                finish()
             }
-            finish()
-        }else {
-            Toast.makeText(this, "Falhou", Toast.LENGTH_SHORT).show()
-        }
         })
 }
 
