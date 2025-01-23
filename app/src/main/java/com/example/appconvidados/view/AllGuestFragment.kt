@@ -14,12 +14,11 @@ import com.example.appconvidados.view.adapter.GuestAdapter
 import com.example.appconvidados.view.listener.OnGuestListener
 import com.example.appconvidados.viewmodel.GuestsViewModel
 
-
 class AllGuestFragment : Fragment() {
 
     private var _binding: FragmentAllGuestsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel : GuestsViewModel
+    private lateinit var viewModel: GuestsViewModel
     private val adapter = GuestAdapter()
 
     override fun onCreateView(
@@ -30,15 +29,12 @@ class AllGuestFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GuestsViewModel::class.java)
         _binding = FragmentAllGuestsBinding.inflate(inflater, container, false)
 
-        //layout
         binding.recyclerGuests.layoutManager = LinearLayoutManager(context)
 
-        //adapter
         binding.recyclerGuests.adapter = adapter
 
         val listener = object : OnGuestListener {
-
-            override fun onClick(id : Int) {
+            override fun onClick(id: Int) {
                 val intent = Intent(context, GuestFormActivity::class.java)
                 val bundle = Bundle()
                 bundle.putInt(DataBaseConstants.GUEST.ID, id)
@@ -46,11 +42,10 @@ class AllGuestFragment : Fragment() {
                 startActivity(intent)
             }
 
-            override fun onDelete(id : Int) {
+            override fun onDelete(id: Int) {
                 viewModel.delete(id)
                 viewModel.getAll()
             }
-
         }
 
         adapter.attachListenner(listener)
@@ -72,10 +67,9 @@ class AllGuestFragment : Fragment() {
         _binding = null
     }
 
-    private fun observe(){
-        viewModel.guests.observe(viewLifecycleOwner){
+    private fun observe() {
+        viewModel.guests.observe(viewLifecycleOwner) {
             adapter.updateGuests(it)
-
         }
     }
 }

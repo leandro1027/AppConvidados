@@ -26,15 +26,12 @@ class AbsentFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GuestsViewModel::class.java)
         _binding = FragmentAbsentBinding.inflate(inflater, container, false)
 
-        //layout
         binding.recyclerGuests.layoutManager = LinearLayoutManager(context)
 
-        //adapter
         binding.recyclerGuests.adapter = adapter
 
         val listener = object : OnGuestListener {
-
-            override fun onClick(id : Int) {
+            override fun onClick(id: Int) {
                 val intent = Intent(context, GuestFormActivity::class.java)
                 val bundle = Bundle()
                 bundle.putInt(DataBaseConstants.GUEST.ID, id)
@@ -42,13 +39,14 @@ class AbsentFragment : Fragment() {
                 startActivity(intent)
             }
 
-            override fun onDelete(id : Int) {
+            override fun onDelete(id: Int) {
                 viewModel.delete(id)
                 viewModel.getAbsent()
             }
         }
 
         adapter.attachListenner(listener)
+        //viewModel.getAll()
         observe()
         return binding.root
     }
@@ -57,7 +55,6 @@ class AbsentFragment : Fragment() {
         super.onResume()
         viewModel.getAbsent()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

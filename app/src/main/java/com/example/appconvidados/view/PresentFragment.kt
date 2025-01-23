@@ -17,6 +17,9 @@ import com.example.appconvidados.viewmodel.GuestsViewModel
 class PresentFragment : Fragment() {
 
     private var _binding: FragmentPresentBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
     private val binding get() = _binding!!
 
     private lateinit var viewModel: GuestsViewModel
@@ -26,15 +29,13 @@ class PresentFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GuestsViewModel::class.java)
 
         _binding = FragmentPresentBinding.inflate(inflater, container, false)
-        //layout
+
         binding.recyclerGuests.layoutManager = LinearLayoutManager(context)
 
-        //adapter
         binding.recyclerGuests.adapter = adapter
 
         val listener = object : OnGuestListener {
-
-            override fun onClick(id : Int) {
+            override fun onClick(id: Int) {
                 val intent = Intent(context, GuestFormActivity::class.java)
                 val bundle = Bundle()
                 bundle.putInt(DataBaseConstants.GUEST.ID, id)
@@ -42,13 +43,14 @@ class PresentFragment : Fragment() {
                 startActivity(intent)
             }
 
-            override fun onDelete(id : Int) {
+            override fun onDelete(id: Int) {
                 viewModel.delete(id)
                 viewModel.getPresent()
             }
         }
 
         adapter.attachListenner(listener)
+        //viewModel.getAll()
         observe()
         return binding.root
     }
@@ -63,8 +65,8 @@ class PresentFragment : Fragment() {
         _binding = null
     }
 
-    private fun observe(){
-        viewModel.guests.observe(viewLifecycleOwner){
+    private fun observe() {
+        viewModel.guests.observe(viewLifecycleOwner) {
             adapter.updateGuests(it)
         }
     }

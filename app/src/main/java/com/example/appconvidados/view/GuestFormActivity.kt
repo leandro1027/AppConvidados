@@ -7,21 +7,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
-import com.example.appconvidados.viewmodel.GuestFormViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.appconvidados.R
 import com.example.appconvidados.constants.DataBaseConstants
 import com.example.appconvidados.databinding.ActivityGuestFormBinding
 import com.example.appconvidados.model.GuestModel
-
+import com.example.appconvidados.viewmodel.GuestFormViewModel
 
 class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var binding: ActivityGuestFormBinding
-    private lateinit var viewModel: GuestFormViewModel
+    private lateinit var binding : ActivityGuestFormBinding
+    private lateinit var viewModel : GuestFormViewModel
 
-    private  var guestId = 0
+    private var guestId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +40,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
         observe()
         loadData()
+
     }
 
     override fun onClick(view: View) {
@@ -51,31 +51,30 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             val model = GuestModel(guestId, name, presence)
             viewModel.save(model)
             finish()
-
         }
     }
-    
+
     private fun observe(){
-        viewModel.guests.observe(this, Observer {
+        viewModel.guest.observe(this, Observer {
             binding.editTextName.setText(it.name)
-            if (it.presence) {
+            if(it.presence){
                 binding.radioPresent.isChecked = true
-            } else {
+            }else{
                 binding.radioAbsent.isChecked = true
             }
         })
 
         viewModel.saveGuest.observe(this, Observer {
-            if (it.sucess) {
-                Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
+            if(it.sucess){
+                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 finish()
             }
         })
-}
+    }
 
-    private fun loadData(){
+    private fun loadData() {
         val bundle = intent.extras
-        if (bundle != null){
+        if(bundle != null){
             guestId = bundle.getInt(DataBaseConstants.GUEST.ID)
             viewModel.get(guestId)
         }
