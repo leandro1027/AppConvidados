@@ -28,8 +28,8 @@ class GuestAdapter: RecyclerView.Adapter<GuestViewHolder>(){
 
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateGuests(list : List<GuestModel>){
-        guestList   = list
+    fun updateGuests(list: List<GuestModel>){
+        guestList = list
 
         //Atualizar
         notifyDataSetChanged()

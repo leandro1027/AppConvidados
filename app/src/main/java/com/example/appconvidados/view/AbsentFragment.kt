@@ -46,9 +46,7 @@ class AbsentFragment : Fragment() {
                 viewModel.delete(id)
                 viewModel.getAbsent()
             }
-
         }
-
 
         adapter.attachListenner(listener)
         observe()

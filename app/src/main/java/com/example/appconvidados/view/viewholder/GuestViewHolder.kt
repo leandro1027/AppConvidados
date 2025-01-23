@@ -8,23 +8,23 @@ import com.example.appconvidados.databinding.RowGuestBinding
 import com.example.appconvidados.model.GuestModel
 import com.example.appconvidados.view.listener.OnGuestListener
 
-class GuestViewHolder(private  val bind: RowGuestBinding, private val listenner: OnGuestListener) : RecyclerView.ViewHolder(bind.root) {
+class GuestViewHolder(private  val bind: RowGuestBinding, private val listener: OnGuestListener) : RecyclerView.ViewHolder(bind.root) {
 
     fun bind(guest: GuestModel){
-    //utilizando viewBniding
+    //utilizando viewBinding
        bind.textName.text = guest.name
 
         bind.textName.setOnClickListener{
-            listenner.onClick(guest.id)
+            listener.onClick(guest.id)
         }
 
-        bind.textName.setOnClickListener{
+        bind.textName.setOnLongClickListener(){
             AlertDialog.Builder(itemView.context)
                 .setTitle("Remoção do convidado")
                 .setMessage("Deseja remover?")
                 .setPositiveButton("Sim"
                 ) { dialog, which ->
-                    listenner.onDelete(guest.id)
+                    listener.onDelete(guest.id)
                 }
                 .setNegativeButton("Não", null)
                 .create()

@@ -231,7 +231,7 @@ class GuestRepository private constructor(context: Context) {
                     val presence = cursor.getInt(cursor.getColumnIndex(DataBaseConstants.GUEST.COLUMNS.PRESENCE))
 
                     //construindo o modelo
-                    val guest = GuestModel(id, name, presence == 1)
+                    val guest = GuestModel(id, name, presence == 0)
                     list.add(guest)
                 }
             }

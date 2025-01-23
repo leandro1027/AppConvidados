@@ -46,7 +46,6 @@ class PresentFragment : Fragment() {
                 viewModel.delete(id)
                 viewModel.getPresent()
             }
-
         }
 
         adapter.attachListenner(listener)
