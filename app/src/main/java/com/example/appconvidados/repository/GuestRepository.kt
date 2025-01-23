@@ -92,11 +92,8 @@ class GuestRepository private constructor(context: Context) {
                 DataBaseConstants.GUEST.COLUMNS.PRESENCE
             )
 
-            val selection = DataBaseConstants.GUEST.COLUMNS.PRESENCE +" = ?"
-            val args = arrayOf("1")
-
             val cursor = db.query(
-                DataBaseConstants.GUEST.TABLE_NAME, projection, selection, args, null, null, null
+                DataBaseConstants.GUEST.TABLE_NAME, projection, null, null, null, null, null
             )
 
             if (cursor != null && cursor.count > 0) {
@@ -231,7 +228,7 @@ class GuestRepository private constructor(context: Context) {
                     val presence = cursor.getInt(cursor.getColumnIndex(DataBaseConstants.GUEST.COLUMNS.PRESENCE))
 
                     //construindo o modelo
-                    val guest = GuestModel(id, name, presence == 0)
+                    val guest = GuestModel(id, name, presence == 1)
                     list.add(guest)
                 }
             }
