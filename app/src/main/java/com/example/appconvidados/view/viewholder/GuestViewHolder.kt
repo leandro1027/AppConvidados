@@ -1,7 +1,5 @@
 package com.example.appconvidados.view.viewholder
 
-import android.content.DialogInterface
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appconvidados.databinding.RowGuestBinding
@@ -19,7 +17,7 @@ class GuestViewHolder(private val bind: RowGuestBinding, private val listener: O
             listener.onClick(guest.id)
         }
 
-        bind.textName.setOnLongClickListener {
+        bind.textName.setOnLongClickListener() {
             AlertDialog.Builder(itemView.context)
                 .setTitle("Remoção do convidado")
                 .setMessage("Deseja remover?")

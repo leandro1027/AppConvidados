@@ -11,11 +11,11 @@ import com.example.appconvidados.view.viewholder.GuestViewHolder
 
 class GuestAdapter: RecyclerView.Adapter<GuestViewHolder>(){
     private var guestList: List<GuestModel> = listOf()
-    private lateinit var listenner : OnGuestListener
+    private lateinit var listener : OnGuestListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestViewHolder {
        val item = RowGuestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return GuestViewHolder(item, listenner)
+        return GuestViewHolder(item, listener)
     }
 
     override fun onBindViewHolder(holder: GuestViewHolder, position: Int) {
@@ -36,6 +36,6 @@ class GuestAdapter: RecyclerView.Adapter<GuestViewHolder>(){
     }
 
     fun attachListenner(guestListener: OnGuestListener){
-        listenner = guestListener
+        listener = guestListener
     }
 }

@@ -59,12 +59,11 @@ class GuestRepository private constructor(context: Context) {
             db.update(DataBaseConstants.GUEST.TABLE_NAME, values, selection, args)
             true
         } catch (e:Exception){
-            false
+            return false
         }
     }
 
     fun delete(id: Int): Boolean{
-
         return try {
             val db = guestDataBase.writableDatabase
 
@@ -74,7 +73,7 @@ class GuestRepository private constructor(context: Context) {
             db.delete(DataBaseConstants.GUEST.TABLE_NAME, selection, args)
             true
         }catch (e: Exception){
-            false
+            return false
         }
     }
 
