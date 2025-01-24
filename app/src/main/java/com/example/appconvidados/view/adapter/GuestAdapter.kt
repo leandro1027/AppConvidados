@@ -9,12 +9,12 @@ import com.example.appconvidados.model.GuestModel
 import com.example.appconvidados.view.listener.OnGuestListener
 import com.example.appconvidados.view.viewholder.GuestViewHolder
 
-class GuestAdapter: RecyclerView.Adapter<GuestViewHolder>(){
+class GuestsAdapter: RecyclerView.Adapter<GuestViewHolder>() {
     private var guestList: List<GuestModel> = listOf()
     private lateinit var listener : OnGuestListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestViewHolder {
-       val item = RowGuestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val item = RowGuestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GuestViewHolder(item, listener)
     }
 
@@ -26,16 +26,14 @@ class GuestAdapter: RecyclerView.Adapter<GuestViewHolder>(){
         return guestList.count()
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     fun updateGuests(list: List<GuestModel>){
         guestList = list
-
         //Atualizar
         notifyDataSetChanged()
     }
 
-    fun attachListenner(guestListener: OnGuestListener){
+    fun attachListener(guestListener: OnGuestListener){
         listener = guestListener
     }
 }

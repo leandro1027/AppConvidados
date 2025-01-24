@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appconvidados.constants.DataBaseConstants
 import com.example.appconvidados.databinding.FragmentAbsentBinding
-import com.example.appconvidados.view.adapter.GuestAdapter
+import com.example.appconvidados.view.adapter.GuestsAdapter
 import com.example.appconvidados.view.listener.OnGuestListener
 import com.example.appconvidados.viewmodel.GuestsViewModel
 
@@ -20,7 +20,7 @@ class AbsentFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: GuestsViewModel
-    private val adapter = GuestAdapter()
+    private val adapter = GuestsAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewModel = ViewModelProvider(this).get(GuestsViewModel::class.java)
@@ -45,7 +45,7 @@ class AbsentFragment : Fragment() {
             }
         }
 
-        adapter.attachListenner(listener)
+        adapter.attachListener(listener)
         //viewModel.getAll()
         observe()
         return binding.root

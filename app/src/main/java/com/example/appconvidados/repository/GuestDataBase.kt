@@ -5,21 +5,15 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.appconvidados.constants.DataBaseConstants
 
+class GuestDataBase(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION){
 
-class GuestDataBase(context: Context): SQLiteOpenHelper(context, NAME, null, VERSION) {
-
-    companion object {
-        private const val NAME = "questdb"
+    companion object{
+        private const val NAME = "guestdb"
         private const val VERSION = 1
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        /*
-        db.execSQL(
-        "CREATE TABLE Guest(id integer primary key autoincrement, name text, presence integer);"
-        )
-    }
-       */
+//        db.execSQL("CREATE TABLE Guest(id integer primary key autoincrement, name text, presence integer);")
 
         db.execSQL(
             "CREATE TABLE " + DataBaseConstants.GUEST.TABLE_NAME + " (" +
@@ -29,8 +23,5 @@ class GuestDataBase(context: Context): SQLiteOpenHelper(context, NAME, null, VER
         )
     }
 
-        override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-
-
-        }
-    }
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) { }
+}

@@ -17,7 +17,7 @@ class GuestViewHolder(private val bind: RowGuestBinding, private val listener: O
             listener.onClick(guest.id)
         }
 
-        bind.textName.setOnLongClickListener() {
+        bind.textName.setOnLongClickListener {
             AlertDialog.Builder(itemView.context)
                 .setTitle("Remoção do convidado")
                 .setMessage("Deseja remover?")
